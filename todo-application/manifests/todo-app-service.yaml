@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-app-svc
+  namespace: todo-application
+spec:
+  type: ClusterIP
+  selector:
+    app: todo # This is the app as declared in the deployment.
+  ports:
+    - port: 2345
+      protocol: TCP
+      targetPort: 3000

@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: todo-scheduler
+  namespace: todo-application
+spec:
+  schedule: "0 * * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: todo-scheduler
+            image: lauriil12/devopswithkubernetes:todo-scheduler2.09.5
+          restartPolicy: Never
